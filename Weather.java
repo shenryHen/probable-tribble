@@ -1,3 +1,13 @@
+/*
+*	Author: Henry Shen
+*	26 May 2016
+*
+*	Allows user to find current weather data from a city nameor zip code
+*	retrrieve weather data from http://openweathermap.org/ 
+*
+*/
+
+
 import org.json.simple.*;
 import org.json.simple.parser.*;
 import java.io.*;
@@ -11,7 +21,7 @@ public class Weather{
 	private String searchParameter = "";
 	private String urlActual = "";
 	private final String API_URL = "http://api.openweathermap.org/data/2.5/weather?";
-	private final String API_KEY = "&appid=267a3fcae28328116ef24e074417a657";
+	private final String API_KEY = /*insert openweathermap api key here*/;
 
 
 	public Weather(String thelocation){
@@ -24,13 +34,20 @@ public class Weather{
 		location = Integer.toString(zipCode);
 		searchParameter = "zip=";
 	}
-
+	
+	/*
+		creates URL from given user input 
+	*/
 	private void createURL(){
 
 		urlActual = API_URL + searchParameter + location + API_KEY;
 		//System.out.println("calling weather api from URL = " + urlActual);
 	}
-
+	/*
+		Retrieves weather data from given url
+		as a JSON and parses it with simple-json Json reader
+		
+	*/
 	public void getWeatherData(){
 		createURL();
 		try{
